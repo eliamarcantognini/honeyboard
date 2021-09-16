@@ -247,7 +247,7 @@ class FormComponent {
         return Object.keys(obj).map(key => obj[key]).filter(value => typeof value === 'number');
     }
     textChange(value) {
-        this.remainingText = 50 - value.length;
+        this.remainingText = 100 - value.length;
     }
     getToken() {
         const length = 18;
