@@ -215,8 +215,8 @@ class FormComponent {
         this.elementType = 'url';
         this.value = '';
         this.ranges = _honeyNames__WEBPACK_IMPORTED_MODULE_1__.HoneyNames;
-        this.remainingText = 50;
-        this.model = new _honey__WEBPACK_IMPORTED_MODULE_0__.Honey('', '', '', '', '', "", '');
+        this.remainingText = 100;
+        this.model = new _honey__WEBPACK_IMPORTED_MODULE_0__.Honey('', '', '', '', '', '', '');
         this.submitted = false;
     }
     onSubmit() {
@@ -225,9 +225,7 @@ class FormComponent {
         // this.sendEmail();
     }
     newQrCode() {
-        let possibile = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz";
-        const lengthOfCode = 18;
-        const token = this.makeRandomToken(lengthOfCode, possibile);
+        const token = this.getToken();
         // Fare un pack del json per risparmiare spazio?
         this.value = JSON.stringify({
             c: token,
@@ -251,10 +249,12 @@ class FormComponent {
     textChange(value) {
         this.remainingText = 50 - value.length;
     }
-    makeRandomToken(lengthOfCode, possible) {
+    getToken() {
+        const length = 18;
+        let pattern = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz";
         let text = "";
-        for (let i = 0; i < lengthOfCode; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        for (let i = 0; i < length; i++) {
+            text += pattern.charAt(Math.floor(Math.random() * pattern.length));
         }
         return text;
     }
@@ -450,9 +450,7 @@ __webpack_require__.r(__webpack_exports__);
 class Honey {
     constructor(
     // public email: string, // implementare la mail con un backend
-    nomeAzienda, recapito, indirizzo, citta, cap, nomeMiele, 
-    // public nomeMiele: Map<String, Number>,
-    descMiele, sito) {
+    nomeAzienda, recapito, indirizzo, citta, cap, nomeMiele, descMiele, sito) {
         this.nomeAzienda = nomeAzienda;
         this.recapito = recapito;
         this.indirizzo = indirizzo;
